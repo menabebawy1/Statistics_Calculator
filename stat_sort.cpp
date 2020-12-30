@@ -12,7 +12,7 @@ double mean(double arr[], double size)
     return sum / size;
 }
 
-double stddev(double arr[], int size)
+double variance(double arr[], int size)
 {
     double total = 0;
     double average = mean(arr, size);
@@ -20,7 +20,12 @@ double stddev(double arr[], int size)
     {
         total += pow((average - arr[i]), 2);
     }
-    return sqrt(total / size);
+    return total / size;
+}
+
+double stddev(double arr[], int size)
+{
+    return sqrt(variance(arr, size));
 }
 
 double stderror(double arr[], int size)
@@ -42,7 +47,7 @@ int factorial(int x)
 
 int combination(int n, int k)
 {
-    return factorial(n)/(factorial(k)*(factorial(n-k)));
+    return factorial(n) / (factorial(k) * (factorial(n - k)));
 }
 
 int main()
