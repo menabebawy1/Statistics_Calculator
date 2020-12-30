@@ -50,8 +50,13 @@ int combination(int n, int k)
     return factorial(n) / (factorial(k) * (factorial(n - k)));
 }
 
+double binomialRandomVariable(double n, double x, double p){
+    return combination(n,x)*pow(p,x)*pow((1-p),(n-x));
+}
+
 int main()
 {
     double nums[20] = {9, 2, 5, 4, 12, 7, 8, 11, 9, 3, 7, 4, 12, 5, 4, 10, 9, 6, 9, 4};
     cout << combination(7, 3) << endl;
+    cout << binomialRandomVariable(12,8,.6) << endl;
 }
