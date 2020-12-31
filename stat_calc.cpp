@@ -214,10 +214,24 @@ void BoxWhisker(double arr[], int size)
     cout << endl;
 }
 
+double probabilityOR(double a, double b)
+{
+    return a + b - (a * b);
+}
+
 double binomialRandomVariable(double n, double x, double p)
 {
     return combination(n, x) * pow(p, x) * pow((1 - p), (n - x));
 }
+double meanRandomVariable(double n, double p)
+{
+    return n * p;
+}
+double varianceRandomVariable(double n, double p)
+{
+    return meanRandomVariable(n,p)*(1-p);
+}
+
 
 int main()
 {
