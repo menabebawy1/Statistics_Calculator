@@ -108,7 +108,7 @@ double min(double arr[], int size) //Better use this woithout the helper sort fu
 double median(double arr[], int size) //Works on its own without BoxWhisker function
 {
 
-    int med = 0;
+    double med = 0;
     double *p = insertionSort(arr, size);
 
     if (size % 2 != 0)
@@ -126,10 +126,42 @@ void BoxWhisker(double arr[], int size)
 {
     double *p = insertionSort(arr, size);
 
-    int med = median(p, size);
-    cout << med << endl;
+    for (int i = 0; i < size; i++)
+    {
+        cout << p[i] << " ";
+    }
+    cout << endl;
 
+    double med = median(p, size);
+    cout << "Median: " << med << endl;
 
+    double q1 = 0;
+    q1 = median(p, size / 2);
+    cout << "Q1: " << q1 << endl;
+
+    double q3 = 0;
+    int s = size / 2;
+    double arr2[s];
+    if (size % 2 != 0) //odd
+    {
+        for (int i = 0; i < s; i++)
+        {
+            arr2[i] = p[s + i + 1];
+        }
+    }
+    else //even
+    {
+        for (int i = 0; i < s; i++)
+        {
+            arr2[i] = p[s + i];
+        }
+    }
+    q3 = median(arr2, s);
+    cout << "Q3: " << q3 << endl;
+
+    double IQR = 0;
+    IQR = q3 - q1;
+    cout << "IQR: " << IQR << endl;
 }
 
 double binomialRandomVariable(double n, double x, double p)
@@ -139,11 +171,11 @@ double binomialRandomVariable(double n, double x, double p)
 
 int main()
 {
-    double nums[21] = {9, 2, 5, 4, 12, 7, 8, 11, 9, 3, 7, 4, 12, 5, 4, 10, 9, 6, 9, 4, 3};
-    //BoxWhisker(nums, 21);
+    double nums[20] = {21, 98, 5, 55, 12, 76, 8, 11, 98, 3, 21, 4, 12, 5, 30, 10, 17, 6, 9, 51};
+    BoxWhisker(nums, 20);
     //cout << combination(7, 3) << endl;
     //cout << min(nums, 20) << endl;
     //cout << binomialRandomVariable(12, 8, .6) << endl;
-    cout << median(nums, 21) << endl;
+    //cout << median(nums, 21) << endl;
     //cout << Q1(nums, 21) << endl;
 }
