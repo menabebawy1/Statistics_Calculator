@@ -50,11 +50,12 @@ int combination(int n, int k)
     return factorial(n) / (factorial(k) * (factorial(n - k)));
 }
 
-double* insertionSort(double arr[], int size)
+double *insertionSort(double arr[], int size)
 {
     double *p = new double[size];
 
-    for (int i = 0 ; i < size; i++){
+    for (int i = 0; i < size; i++)
+    {
         p[i] = arr[i];
     }
 
@@ -74,9 +75,8 @@ double* insertionSort(double arr[], int size)
             }
         }
     }
-    
-    return p;
 
+    return p;
 }
 
 double max(double arr[], int size)
@@ -92,7 +92,7 @@ double max(double arr[], int size)
     return max;
 }
 
-double min(double arr[], int size)
+double min(double arr[], int size) //Better use this woithout the helper sort function because that would be O(n^2) while this is only O(n)
 {
     double min = arr[0];
     for (int i = 1; i < size; i++)
@@ -105,18 +105,31 @@ double min(double arr[], int size)
     return min;
 }
 
-double median(double arr[], int size){
+double median(double arr[], int size) //Works on its own without BoxWhisker function
+{
+
+    int med = 0;
     double *p = insertionSort(arr, size);
-    for(int i = 0; i < size; i++){
-        cout << p[i] << " ";
+
+    if (size % 2 != 0)
+    {
+        med = p[size / 2];
     }
-    cout << endl;
-    delete p;
-    p = nullptr;
+    else
+    {
+        med = (p[size / 2] + p[(size / 2) - 1]) / 2;
+    }
+    return med;
 }
 
 void BoxWhisker(double arr[], int size)
 {
+    double *p = insertionSort(arr, size);
+
+    int med = median(p, size);
+    cout << med << endl;
+
+
 }
 
 double binomialRandomVariable(double n, double x, double p)
@@ -126,10 +139,11 @@ double binomialRandomVariable(double n, double x, double p)
 
 int main()
 {
-    double nums[20] = {9, 2, 5, 4, 12, 7, 8, 11, 9, 3, 7, 4, 12, 5, 4, 10, 9, 6, 9, 4};
+    double nums[21] = {9, 2, 5, 4, 12, 7, 8, 11, 9, 3, 7, 4, 12, 5, 4, 10, 9, 6, 9, 4, 3};
+    //BoxWhisker(nums, 21);
     //cout << combination(7, 3) << endl;
-   // cout << min(nums, 20) << endl;
+    //cout << min(nums, 20) << endl;
     //cout << binomialRandomVariable(12, 8, .6) << endl;
-   cout << median(nums, 20) << endl;
-    
+    cout << median(nums, 21) << endl;
+    //cout << Q1(nums, 21) << endl;
 }
