@@ -169,6 +169,10 @@ void BoxWhisker(double arr[], int size)
     IQR = q3 - q1;
     cout << "IQR: " << IQR << endl;
 
+    double range = 0;
+    range = max - min;
+    cout << "Range: " << range << endl;
+
     cout << endl;
 
     for (int i = round(min); i <= round(max); i++)
