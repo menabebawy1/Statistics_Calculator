@@ -132,6 +132,12 @@ void BoxWhisker(double arr[], int size)
     }
     cout << endl;
 
+    double min = p[0];
+    double max = p[size - 1];
+
+    cout << "Min: " << min << endl;
+    cout << "Max: " << max << endl;
+
     double med = median(p, size);
     cout << "Median: " << med << endl;
 
@@ -162,6 +168,46 @@ void BoxWhisker(double arr[], int size)
     double IQR = 0;
     IQR = q3 - q1;
     cout << "IQR: " << IQR << endl;
+
+    cout << endl;
+
+    for (int i = round(min); i <= round(max); i++)
+    {
+        if (i == min || ((min < i + 1) && (min > i)))
+        {
+            cout << " --- MIN: " << min << " ---" << endl;
+        }
+        else if (i == q1 || ((q1 < i + 1) && (q1 > i)))
+        {
+            cout << " --- Q1 : " << q1 << " ---" << endl;
+        }
+        else if (i == med || ((med < i + 1) && (med > i)))
+        {
+            cout << " --- MED: " << med << " ---" << endl;
+        }
+        else if (i == q3 || ((q3 < i + 1) && (q3 > i)))
+        {
+            cout << " --- Q3 : " << q3 << " ---" << endl;
+        }
+        else if (i == max || ((max < i + 1) && (max > i)))
+        {
+            cout << " --- MAX: " << max << " ---" << endl;
+        }
+        else if (i > q1 && i < q3 && i < 10)
+        {
+            cout << "|      " << i << "        |" << endl;
+        }
+        else if (i > q1 && i < q3)
+        {
+            cout << "|      " << i << "       |" << endl;
+        }
+        else if (i < max)
+        {
+            cout << "       " << i << "        " << endl;
+        }
+    }
+
+    cout << endl;
 }
 
 double binomialRandomVariable(double n, double x, double p)
@@ -171,8 +217,8 @@ double binomialRandomVariable(double n, double x, double p)
 
 int main()
 {
-    double nums[20] = {21, 98, 5, 55, 12, 76, 8, 11, 98, 3, 21, 4, 12, 5, 30, 10, 17, 6, 9, 51};
-    BoxWhisker(nums, 20);
+    double nums[21] = {2, 4, 6, 8, 10, 41.2, 14, 43.3, 18, 16.7, 45.5, 22, 24, 22.6, 28, 30, 19.45, 34, 36, 38, 40};
+    BoxWhisker(nums, 21);
     //cout << combination(7, 3) << endl;
     //cout << min(nums, 20) << endl;
     //cout << binomialRandomVariable(12, 8, .6) << endl;
