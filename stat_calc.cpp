@@ -219,19 +219,45 @@ double probabilityOR(double a, double b)
     return a + b - (a * b);
 }
 
+double probabilityCompliment(double a)
+{
+    return 1 - a;
+}
+
+double meanRandomVariable(double x[], double px[], int size)
+{
+    double total = 0;
+    for (int i = 0; i < size; i++)
+    {
+        total += x[i] * px[i];
+    }
+    return total;
+}
+
+double varianceRandomVariable(double x[], double px[], int size){
+    double mean = meanRandomVariable(x, px, size);
+    double total = 0;
+    for(int i =0; i < size; i++){
+        total += pow((x[i] - mean), 2) * px[i];
+    }
+    return total;
+
+}
+
 double binomialRandomVariable(double n, double x, double p)
 {
     return combination(n, x) * pow(p, x) * pow((1 - p), (n - x));
 }
-double meanRandomVariable(double n, double p)
+
+double meanBinomialRandomVariable(double n, double p)
 {
     return n * p;
 }
-double varianceRandomVariable(double n, double p)
-{
-    return meanRandomVariable(n,p)*(1-p);
-}
 
+double varianceBinomialRandomVariable(double n, double p)
+{
+    return meanBinomialRandomVariable(n, p) * (1 - p);
+}
 
 int main()
 {
