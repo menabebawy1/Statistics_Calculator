@@ -292,7 +292,37 @@ void confidenceIntervalSampleProportion(double level, double sampleP, double Zc,
     double margin = Zc * sqrt((sampleP * (1 - sampleP)) / n);
     double upper = sampleP + margin;
     double lower = sampleP - margin;
-    cout << "We are " << level << "% confident that the population is between: " << lower << " - " << upper << " .";
+    cout << "We are " << level << "% confident that the population is between: " << lower << " - " << upper << " ." << endl;
+}
+
+void confidenceIntervalMean(double level, double sampleM, double t, double s, int n)
+{
+    double margin = t * (s / sqrt(n));
+    double upper = sampleM + margin;
+    double lower = sampleM - margin;
+    cout << "We are " << level << "% confident that the mean is between: " << lower << " - " << upper << " ." << endl;
+}
+
+void acceptRejectNull(double pVal, double a)
+{
+    if (pVal <= a)
+    {
+        cout << "We reject the null hypothesis." << endl;
+    }
+    else
+    {
+        cout << "We fail to reject the null hypothesis. " << endl;
+    }
+}
+
+double hypothesisTestPopulation(double sampleP, double nullP, int n)
+{
+    return (sampleP - nullP) / sqrt((nullP * (1 - nullP)) / n);
+}
+
+double hypothesisTestMean(double sampleM, double nullM, int n, double s)
+{
+    return (sampleM - nullM) / (s / sqrt(n));
 }
 
 int main()
