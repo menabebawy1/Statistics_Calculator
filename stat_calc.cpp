@@ -234,14 +234,27 @@ double meanRandomVariable(double x[], double px[], int size)
     return total;
 }
 
-double varianceRandomVariable(double x[], double px[], int size){
+double varianceRandomVariable(double x[], double px[], int size)
+{
     double mean = meanRandomVariable(x, px, size);
     double total = 0;
-    for(int i =0; i < size; i++){
+    for (int i = 0; i < size; i++)
+    {
         total += pow((x[i] - mean), 2) * px[i];
     }
     return total;
+}
 
+double meanLinearRandomVariable(double x[], double px[], int size, double a, double b)
+{
+    double mean = meanRandomVariable(x, px, size);
+    return (a * mean) + b;
+}
+
+double varianceLinearRandomVariable(double x[], double px[], int size, double a)
+{
+    double var = varianceRandomVariable(x, px, size);
+    return pow(a, 2) * var;
 }
 
 double binomialRandomVariable(double n, double x, double p)
