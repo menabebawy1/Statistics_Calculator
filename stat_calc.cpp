@@ -325,13 +325,45 @@ double hypothesisTestMean(double sampleM, double nullM, int n, double s)
     return (sampleM - nullM) / (s / sqrt(n));
 }
 
+void alternateHypothesisComparingTwoProportions(double p1, double p2)
+{
+    if (p1 - p2 > 0)
+    {
+        cout << "H0: p1 - p2 > 0" << endl;
+    }
+    else if (p1 - p2 < 0)
+    {
+        cout << "H0: p1 - p2 < 0" << endl;
+    }
+    else
+    {
+        cout << "H0: p1 - p2 = 0" << endl;
+    }
+}
+
+double samplePCommonComparingTwoProportions(double n1, double n2, double sampleP1, double sampleP2)
+{
+    return ((n1 * sampleP1) + (n2 * sampleP2)) / (n1 + n2);
+}
+
+double zComparingTwoProportions(double n1, double n2, double sampleP1, double sampleP2)
+{
+    double commonP = samplePCommonComparingTwoProportions(n1, n2, sampleP1, sampleP2);
+    return (sampleP1 - sampleP2) / sqrt(((commonP * (1 - commonP)) / n1) + ((commonP * (1 - commonP)) / n2));
+}
+
+double confidenceIntervalComparingTwoProportions(double level, double n1, double n2, double sampleP1, double sampleP2, double Zc)
+{
+    double commonP = samplePCommonComparingTwoProportions(n1, n2, sampleP1, sampleP2);
+    double margin = Zc * (((commonP * (1 - commonP)) / n1) + ((commonP * (1 - commonP)) / n2));
+    double upper = (sampleP1 - sampleP2) + margin;
+    double lower = (sampleP1 - sampleP2) - margin;
+    cout << "We are " << level << "% confident that the difference between the proportions is between: " << lower << " - " << upper << " ." << endl;
+    
+}
+
 int main()
 {
     double nums[21] = {2, 4, 6, 8, 10, 41.2, 14, 43.3, 18, 16.7, 45.5, 22, 24, 22.6, 28, 30, 19.45, 34, 36, 38, 40};
     BoxWhisker(nums, 21);
-    //cout << combination(7, 3) << endl;
-    //cout << min(nums, 20) << endl;
-    //cout << binomialRandomVariable(12, 8, .6) << endl;
-    //cout << median(nums, 21) << endl;
-    //cout << Q1(nums, 21) << endl;
 }
