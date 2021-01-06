@@ -272,6 +272,29 @@ double varianceBinomialRandomVariable(double n, double p)
     return meanBinomialRandomVariable(n, p) * (1 - p);
 }
 
+double zScore(double x, double mean, double SD)
+{
+    return (x - mean) / SD;
+}
+
+double sampleDistributionMeanSD(double SD, int n)
+{
+    return pow(SD, 2) / n;
+}
+
+double varianceSampleProportion(double p, int n)
+{
+    return (p * (1 - p)) / n;
+}
+
+void confidenceIntervalSampleProportion(double level, double sampleP, double Zc, double n)
+{
+    double margin = Zc * sqrt((sampleP * (1 - sampleP)) / n);
+    double upper = sampleP + margin;
+    double lower = sampleP - margin;
+    cout << "We are " << level << "% confident that the population is between: " << lower << " - " << upper << " .";
+}
+
 int main()
 {
     double nums[21] = {2, 4, 6, 8, 10, 41.2, 14, 43.3, 18, 16.7, 45.5, 22, 24, 22.6, 28, 30, 19.45, 34, 36, 38, 40};
