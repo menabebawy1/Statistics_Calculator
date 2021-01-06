@@ -224,6 +224,11 @@ double probabilityCompliment(double a)
     return 1 - a;
 }
 
+double probabilityGiven(double a, double b)
+{
+    return (a * b) / b;
+}
+
 double meanRandomVariable(double x[], double px[], int size)
 {
     double total = 0;
@@ -325,19 +330,19 @@ double hypothesisTestMean(double sampleM, double nullM, int n, double s)
     return (sampleM - nullM) / (s / sqrt(n));
 }
 
-void alternateHypothesisComparingTwoProportions(double p1, double p2)
+void alternateHypothesisComparingTwoValues(double v1, double v2)
 {
-    if (p1 - p2 > 0)
+    if (v1 - v2 > 0)
     {
-        cout << "H0: p1 - p2 > 0" << endl;
+        cout << "H0: v1 - v2 > 0" << endl;
     }
-    else if (p1 - p2 < 0)
+    else if (v1 - v2 < 0)
     {
-        cout << "H0: p1 - p2 < 0" << endl;
+        cout << "H0: v1 - v2 < 0" << endl;
     }
     else
     {
-        cout << "H0: p1 - p2 = 0" << endl;
+        cout << "H0: v1 - v2 ≠ 0" << endl;
     }
 }
 
@@ -359,7 +364,31 @@ double confidenceIntervalComparingTwoProportions(double level, double n1, double
     double upper = (sampleP1 - sampleP2) + margin;
     double lower = (sampleP1 - sampleP2) - margin;
     cout << "We are " << level << "% confident that the difference between the proportions is between: " << lower << " - " << upper << " ." << endl;
-    
+}
+
+double tComparingTwoIndependentMeans(double n1, double n2, double sampleM1, double sampleM2, double variance1, double variance2)
+{
+    return (sampleM1 - sampleM2) / sqrt((variance1 / n1) + (variance2 / n2));
+}
+
+double confidenceIntervalComparingTwoIndependentMeans(double level, double n1, double n2, double sampleM1, double sampleM2, double variance1, double variance2, double t)
+{
+    double margin = t * sqrt((variance1 / n1) + (variance2 / n2));
+    double upper = (sampleM1 - sampleM2) + margin;
+    double lower = (sampleM1 - sampleM2) - margin;
+    cout << "We are " << level << "% confident that the difference between the means is between: " << lower << " - " << upper << " ." << endl;
+}
+
+double tComparingTwoRelatedMeans(double arr1[], double arr2[], int size)
+{
+    double arr3[size];
+    for (int i = 0; i < size; i++)
+    {
+        arr3[i] = arr1[i] - arr2[i];
+    }
+    double meanD = mean(arr3, size);
+    double varianceD = variance(arr3, size);
+    return meanD / (varianceD / sqrt(size));
 }
 
 int main()
