@@ -287,7 +287,7 @@ double sampleDistributionMeanSD(double SD, int n)
     return pow(SD, 2) / n;
 }
 
-double varianceSampleProportion(double p, int n)
+double sampleDistributionProportionVariance(double p, int n)
 {
     return (p * (1 - p)) / n;
 }
@@ -320,7 +320,7 @@ void acceptRejectNull(double pVal, double a)
     }
 }
 
-double hypothesisTestPopulation(double sampleP, double nullP, int n)
+double hypothesisTestProportion(double sampleP, double nullP, int n)
 {
     return (sampleP - nullP) / sqrt((nullP * (1 - nullP)) / n);
 }
@@ -357,7 +357,7 @@ double zComparingTwoProportions(double n1, double n2, double sampleP1, double sa
     return (sampleP1 - sampleP2) / sqrt(((commonP * (1 - commonP)) / n1) + ((commonP * (1 - commonP)) / n2));
 }
 
-double confidenceIntervalComparingTwoProportions(double level, double n1, double n2, double sampleP1, double sampleP2, double Zc)
+void confidenceIntervalComparingTwoProportions(double level, double n1, double n2, double sampleP1, double sampleP2, double Zc)
 {
     double commonP = samplePCommonComparingTwoProportions(n1, n2, sampleP1, sampleP2);
     double margin = Zc * (((commonP * (1 - commonP)) / n1) + ((commonP * (1 - commonP)) / n2));
@@ -371,7 +371,7 @@ double tComparingTwoIndependentMeans(double n1, double n2, double sampleM1, doub
     return (sampleM1 - sampleM2) / sqrt((variance1 / n1) + (variance2 / n2));
 }
 
-double confidenceIntervalComparingTwoIndependentMeans(double level, double n1, double n2, double sampleM1, double sampleM2, double variance1, double variance2, double t)
+void confidenceIntervalComparingTwoIndependentMeans(double level, double n1, double n2, double sampleM1, double sampleM2, double variance1, double variance2, double t)
 {
     double margin = t * sqrt((variance1 / n1) + (variance2 / n2));
     double upper = (sampleM1 - sampleM2) + margin;
@@ -393,6 +393,44 @@ double tComparingTwoRelatedMeans(double arr1[], double arr2[], int size)
 
 int main()
 {
+    cout << "Hello, welcome to the MINSTAT calculator (Copyright © 2021 | Mena Bebawy). Here you will find the calculations neccessary for problems for an Introductory Statistics Class. " << endl;
+    cout << "Select from the following options, and enter the number related to your problem. " << endl;
+    cout << "1. Find the Mean. " << endl;
+    cout << "2. Find the Variance. " << endl;
+    cout << "3. Find the Standard Deviation. " << endl;
+    cout << "4. Find the Standard Error. " << endl;
+    cout << "5. Find the factorial value of a number n. " << endl;
+    cout << "6. Find the combination of 2 numbers x and y. That is x choose y. " << endl;
+    cout << "7. Find the Maximum value in a data set. " << endl;
+    cout << "8. Find the Minimum value in a data set. " << endl;
+    cout << "9. Find the Median in a data set. " << endl;
+    cout << "10. Display a Box and Whisker Plot using a data set and dsiplay all the related varible such Q1, Q3, IQR, and Range. " << endl;
+    cout << "11. Find the probability of A OR B. " << endl;
+    cout << "12. Find the compliment Probability of A. " << endl;
+    cout << "13. Find the probability of A GIVEN B. " << endl;
+    cout << "14. Find the mean of a Random Variable Table. " << endl;
+    cout << "15. Find the variance of a Random Variable Table. " << endl;
+    cout << "16. Find the mean of a Linear Random Variable Table. " << endl;
+    cout << "17. Find the variance of a Linear Random Variable Table. " << endl;
+    cout << "18. Find the Binomial Random Variable. " << endl;
+    cout << "19. Find the mean of a Binomial Random Variable. " << endl;
+    cout << "20. Find the variance of a Binomial Random Variable. " << endl;
+    cout << "21. Find the z score of a certain value given the standard deviation. " << endl;
+    cout << "22. Find the standard deviation of the sampling distribution of the sample mean. " << endl;
+    cout << "23. Find the variance of the sampling distribution of the sample proportion. " << endl;
+    cout << "24. Find the confidence interval given a certain confidence level of the sampling distribution of the sample proportion. " << endl;
+    cout << "25. Find the confidence interval of the mean. " << endl;
+    cout << "26. Should the null hypothesis be accepted or fail to be rejected. " << endl;
+    cout << "27. Find the Z value for the hypothesis test for a proportion. " << endl;
+    cout << "28. Find the T value for the hypothesis test for a mean. " << endl;
+    cout << "29. Find the alternate hypothesis for comparing 2 values. " << endl;
+    cout << "30. Find the value of the sample p common when comparing 2 proportions." << endl;
+    cout << "31. Find the Z value for comparing two proportions from independent samples." << endl;
+    cout << "32. Find the confidence interval given a confidence level for comparing two  proportions from independent samples. " << endl;
+    cout << "33. Find the T value for comparing two means from independent samples. " << endl;
+    cout << "34. Find the confidence interval given a confidence level for comparing two means from independent samples." << endl;
+    cout << "35. Find the T value for comparing two means from related samples. " << endl;
+
     double nums[21] = {2, 4, 6, 8, 10, 41.2, 14, 43.3, 18, 16.7, 45.5, 22, 24, 22.6, 28, 30, 19.45, 34, 36, 38, 40};
-    BoxWhisker(nums, 21);
+
 }
