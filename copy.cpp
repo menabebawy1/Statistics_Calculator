@@ -510,6 +510,4 @@ int main()
         copy = readArray(&size);
         cout << endl << "Standard Error: " << stderror(copy, size) << endl << endl;
     }
-
-    
 }
