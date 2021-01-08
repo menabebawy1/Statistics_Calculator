@@ -128,7 +128,7 @@ double median(double arr[], int size) //Works on its own without BoxWhisker func
 void BoxWhisker(double arr[], int size)
 {
     double *p = insertionSort(arr, size);
-
+    cout << endl << "Ordered numbers: ";
     for (int i = 0; i < size; i++)
     {
         cout << p[i] << " ";
@@ -393,13 +393,19 @@ double tComparingTwoRelatedMeans(double arr1[], double arr2[], int size)
     double varianceD = variance(arr3, size);
     return meanD / (varianceD / sqrt(size));
 }
-
+double readNumber(string name){
+    int x = 0;
+    string full = "Enter " + name + ": ";
+    cout << full;
+    cin >> x;
+    return x;
+}
 double *readArray(int* length)
 {
     double *nums = new double[100];
 
     cout << endl;
-    cout << " Example:1,5,7.5,9,3,18" << endl;
+    cout << "Example: 1,5,7.5,9,3,18" << endl;
 
     string str = "";
     cout << "Enter your values separated by commas as shown above: ";
@@ -510,6 +516,36 @@ int main()
         copy = readArray(&size);
         cout << endl << "Standard Error: " << stderror(copy, size) << endl << endl;
     }
+    else if (x == 5){
+        int n = readNumber("number");
+        cout << endl << n << " factorial is: " << factorial(n) << endl << endl;
+    }
+    else if (x == 6){
+        int a = readNumber("first number");
+        int b = readNumber("second number");
+        cout << endl << a << " choose " << b << " is: " << combination(a,b) << endl << endl;
+    }
+    else if (x == 7)
+    {
+        copy = readArray(&size);
+        cout << endl << "Max: " << max(copy, size) << endl << endl;
+    }
+    else if (x == 8)
+    {
+        copy = readArray(&size);
+        cout << endl << "Min: " << min(copy, size) << endl << endl;
+    }
+    else if (x == 9)
+    {
+        copy = readArray(&size);
+        cout << endl << "Median: " << median(copy, size) << endl << endl;
+    }
+    else if (x == 10)
+    {
+        copy = readArray(&size);
+        BoxWhisker(copy, size);
+    }
+
 
     
 }

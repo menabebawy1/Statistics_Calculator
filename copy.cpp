@@ -5,7 +5,7 @@
 #include <sstream>
 using namespace std;
 
-double mean(double arr[], double size)
+double mean(double arr[], double size) //1
 {
     double sum = 0;
     for (int i = 0; i < size; i++)
@@ -15,7 +15,7 @@ double mean(double arr[], double size)
     return sum / size;
 }
 
-double variance(double arr[], int size)
+double variance(double arr[], int size) //2
 {
     double total = 0;
     double average = mean(arr, size);
@@ -26,17 +26,17 @@ double variance(double arr[], int size)
     return total / size;
 }
 
-double stddev(double arr[], int size)
+double stddev(double arr[], int size) //3
 {
     return sqrt(variance(arr, size));
 }
 
-double stderror(double arr[], int size)
+double stderror(double arr[], int size) //4
 {
     return (stddev(arr, size) / sqrt(size));
 }
 
-int factorial(int x)
+int factorial(int x) //5
 {
     if (x == 0)
     {
@@ -48,7 +48,7 @@ int factorial(int x)
     }
 }
 
-int combination(int n, int k)
+int combination(int n, int k) //6
 {
     return factorial(n) / (factorial(k) * (factorial(n - k)));
 }
@@ -82,7 +82,7 @@ double *insertionSort(double arr[], int size)
     return p;
 }
 
-double max(double arr[], int size)
+double max(double arr[], int size) //7
 {
     double max = arr[0];
     for (int i = 1; i < size; i++)
@@ -108,7 +108,7 @@ double min(double arr[], int size) //Better use this woithout the helper sort fu
     return min;
 }
 
-double median(double arr[], int size) //Works on its own without BoxWhisker function
+double median(double arr[], int size)//9 //Works on its own without BoxWhisker function
 {
 
     double med = 0;
