@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <iomanip>
+
 using namespace std;
 
 double mean(double arr[], double size)
@@ -50,7 +52,7 @@ int factorial(int x)
 
 int combination(int n, int k)
 {
-    return factorial(n) / (factorial(k) * (factorial(n - k)));
+    return factorial(n) / (factorial(k) * factorial(n - k));
 }
 
 double *insertionSort(double arr[], int size)
@@ -224,7 +226,7 @@ double probabilityOR(double a, double b)
 
 double probabilityCompliment(double a)
 {
-    return 1 - a;
+    return 1.0 - a;
 }
 
 double probabilityGiven(double a, double b)
@@ -394,12 +396,13 @@ double tComparingTwoRelatedMeans(double arr1[], double arr2[], int size)
     return meanD / (varianceD / sqrt(size));
 }
 double readNumber(string name){
-    int x = 0;
+    double x = 0;
     string full = "Enter " + name + ": ";
     cout << full;
     cin >> x;
     return x;
 }
+
 double *readArray(int* length)
 {
     double *nums = new double[100];
@@ -545,6 +548,19 @@ int main()
         copy = readArray(&size);
         BoxWhisker(copy, size);
     }
+    else if (x == 11){
+        double a = readNumber("first probability");
+        double b = readNumber("second probability");
+        cout << endl << "The probability of " << a << " or " << b << " is: " << probabilityOR(a,b) << endl << endl;
+    }
+    else if (x == 12){
+        double a = readNumber("probability");
+        cout << a << endl;
+        cout << endl << "The compliment of " << a << " is: " << probabilityCompliment(a) << endl << endl;
+    }
+
+    
+
 
 
     
