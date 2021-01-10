@@ -35,8 +35,8 @@ The following are the 35 different types of problems and their solutions.
 ![Problem 9](/9.png)
 10. Display a Box and Whisker Plot using a data set and dsiplay all the related varible such Q1, Q3, IQR, and Range. 
 ![Problem 10](/10.png)
-![Problem 10a](/10b.png)
-![Problem 10c](/10c.png)
+![Problem 10a](/10a.png)
+![Problem 10b](/10b.png)
 11. Find the probability of A OR B. 
 ![Problem 11](/11.png)
 12. Find the compliment Probability of A. 
