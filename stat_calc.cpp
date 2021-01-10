@@ -302,7 +302,7 @@ void confidenceIntervalSampleProportion(double level, double sampleP, double Zc,
     double margin = Zc * sqrt((sampleP * (1 - sampleP)) / n);
     double upper = sampleP + margin;
     double lower = sampleP - margin;
-    cout << "We are " << level << "% confident that the population is between: " << lower << " - " << upper << " ." << endl;
+    cout << "We are " << level << "% confident that the proportion is between: " << lower << " - " << upper << " ." << endl;
 }
 
 void confidenceIntervalMean(double level, double sampleM, double t, double s, int n)
@@ -625,15 +625,15 @@ int main()
         cout << endl << "Standard Deviation: " << sampleDistributionMeanSD(a,b) << endl << endl;
     }
     else if(x == 23){
-        double a = readNumber("proportion of successes in the population");
-        double b = readNumber("number of proporions taken");
+        double a = readNumber("proportion of successes");
+        double b = readNumber("number of proportions taken");
         cout << endl << "Variance: " << sampleDistributionProportionVariance(a,b) << endl << endl;
     }
     else if(x == 24){
         double a = readNumber("confidence level (95,90,etc...)");
         double b = readNumber("proportion of sucesses in the random sample taken");
         double c = readNumber("Zc");
-        double d = readNumber("number of proporions taken");
+        double d = readNumber("number of proportions taken");
         confidenceIntervalSampleProportion(a,b,c,d);
     }
     else if(x == 25){
@@ -652,7 +652,7 @@ int main()
     else if(x == 27){
         double a = readNumber("sample proportion");
         double b = readNumber("p null");
-        double c = readNumber("number of proporions taken");
+        double c = readNumber("number of proportions taken");
         cout << endl << "Z: " << hypothesisTestProportion(a,b,c) << endl << endl;
     }
     else if(x == 28){
@@ -668,22 +668,22 @@ int main()
         alternateHypothesisComparingTwoValues(a,b);
     }
     else if(x == 30){
-        double a = readNumber("number of proporions taken from sample 1");
-        double b = readNumber("number of proporions taken from sample 2");
+        double a = readNumber("number of proportions taken from sample 1");
+        double b = readNumber("number of proportions taken from sample 2");
         double c = readNumber("sample proportion for sample 1");
         double d = readNumber("sample proportion for sample 2");
         cout << endl << "Sample P Common: " << samplePCommonComparingTwoProportions(a,b,c,d) << endl << endl;
     }
     else if(x == 31){
-        double a = readNumber("number of proporions taken from sample 1");
-        double b = readNumber("number of proporions taken from sample 2");
+        double a = readNumber("number of proportions taken from sample 1");
+        double b = readNumber("number of proportions taken from sample 2");
         double c = readNumber("sample proportion for sample 1");
         double d = readNumber("sample proportion for sample 2");
         cout << endl << "Z: " << zComparingTwoProportions(a,b,c,d) << endl << endl;
     }
     else if(x == 32){
-        double a = readNumber("number of proporions taken from sample 1");
-        double b = readNumber("number of proporions taken from sample 2");
+        double a = readNumber("number of proportions taken from sample 1");
+        double b = readNumber("number of proportions taken from sample 2");
         double c = readNumber("sample proportion for sample 1");
         double d = readNumber("sample proportion for sample 2");
         double e = readNumber("Zc");
