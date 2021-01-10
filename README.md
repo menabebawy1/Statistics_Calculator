@@ -9,4 +9,5 @@ I created 35 different types of solutions to statistics problems that can be sol
 Without further explanations, let's take a look.
 When the user first uses the calculator, they get to choose from the following options:
 
+![Intro Image](/intro.png)
 The following are the 35 different types of problems and their solutions.
