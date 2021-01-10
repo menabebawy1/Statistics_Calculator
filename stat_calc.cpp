@@ -362,7 +362,7 @@ double zComparingTwoProportions(double n1, double n2, double sampleP1, double sa
     return (sampleP1 - sampleP2) / sqrt(((commonP * (1 - commonP)) / n1) + ((commonP * (1 - commonP)) / n2));
 }
 
-void confidenceIntervalComparingTwoProportions(double level, double n1, double n2, double sampleP1, double sampleP2, double Zc)
+void confidenceIntervalComparingTwoProportions(double n1, double n2, double sampleP1, double sampleP2, double Zc, double level)
 {
     double commonP = samplePCommonComparingTwoProportions(n1, n2, sampleP1, sampleP2);
     double margin = Zc * (((commonP * (1 - commonP)) / n1) + ((commonP * (1 - commonP)) / n2));
@@ -376,7 +376,7 @@ double tComparingTwoIndependentMeans(double n1, double n2, double sampleM1, doub
     return (sampleM1 - sampleM2) / sqrt((variance1 / n1) + (variance2 / n2));
 }
 
-void confidenceIntervalComparingTwoIndependentMeans(double level, double n1, double n2, double sampleM1, double sampleM2, double variance1, double variance2, double t)
+void confidenceIntervalComparingTwoIndependentMeans(double n1, double n2, double sampleM1, double sampleM2, double variance1, double variance2, double t, double level)
 {
     double margin = t * sqrt((variance1 / n1) + (variance2 / n2));
     double upper = (sampleM1 - sampleM2) + margin;
@@ -499,6 +499,7 @@ int main()
 
     int size = 0;
     double *copy = nullptr;
+    double *copy2 = nullptr;
     if (x == 1)
     {
         copy = readArray(&size);
@@ -558,6 +559,174 @@ int main()
         cout << a << endl;
         cout << endl << "The compliment of " << a << " is: " << probabilityCompliment(a) << endl << endl;
     }
+    else if (x == 13){
+        double a = readNumber("first probability");
+        double b = readNumber("second probability");
+        cout << endl << "The probability of " << a << " given " << b << " is: " << probabilityGiven(a,b) << endl << endl;
+    }
+    else if (x == 14)
+    {
+        cout << endl << "Enter the x values." << endl;
+        copy = readArray(&size);
+        cout << endl << "Enter the values for the probabilities of x." << endl;
+        copy2 = readArray(&size);
+        cout << endl << "Mean Random Variable: " << meanRandomVariable(copy, copy2, size) << endl << endl;
+    }
+    else if (x == 15)
+    {
+        cout << endl << "Enter the x values." << endl;
+        copy = readArray(&size);
+        cout << endl << "Enter the values for the probabilities of x." << endl;
+        copy2 = readArray(&size);
+        cout << endl << "Variance Random Variable: " << varianceRandomVariable(copy, copy2, size) << endl << endl;
+    }
+    else if(x == 16){
+        cout << endl << "Enter the x values." << endl;
+        copy = readArray(&size);
+        cout << endl << "Enter the values for the probabilities of x." << endl;
+        copy2 = readArray(&size);
+        double a = readNumber("a for ax+b");
+        double b = readNumber("b for ax+b");
+        cout << endl << "Mean Linear Random Variable: " << meanLinearRandomVariable(copy, copy2, size, a, b) << endl << endl;
+    }
+    else if(x == 17){
+        cout << endl << "Enter the x values." << endl;
+        copy = readArray(&size);
+        cout << endl << "Enter the values for the probabilities of x." << endl;
+        copy2 = readArray(&size);
+        double a = readNumber("a for a^2 * variance");
+        cout << endl << "Variance Linear Random Variable: " << varianceLinearRandomVariable(copy, copy2, size, a) << endl << endl;
+    }
+    else if(x == 18){
+        double a = readNumber("number of successes");
+        double b = readNumber("number of trials");
+        double c = readNumber("probability of success");
+        cout << endl << "Binomial Random Variable: " << binomialRandomVariable(b,a,c) << endl << endl;
+    }
+    else if(x == 19){
+        double a = readNumber("number of trials");
+        double b = readNumber("probability of success");
+        cout << endl << "Mean Binomial Random Variable: " << meanBinomialRandomVariable(a,b) << endl << endl;
+    }
+    else if(x == 20){
+        double a = readNumber("number of trials");
+        double b = readNumber("probability of success");
+        cout << endl << "Variance Binomial Random Variable: " << varianceBinomialRandomVariable(a,b) << endl << endl;
+    }
+    else if(x == 21){
+        double a = readNumber("value");
+        double b = readNumber("mean");
+        double c = readNumber("standard deviation");
+        cout << endl << "Z score: " << zScore(a,b,c) << endl << endl;
+    }
+    else if(x == 22){
+        double a = readNumber("standard deviation of the means");
+        double b = readNumber("number of means taken");
+        cout << endl << "Standard Deviation: " << sampleDistributionMeanSD(a,b) << endl << endl;
+    }
+    else if(x == 23){
+        double a = readNumber("proportion of successes in the population");
+        double b = readNumber("number of proporions taken");
+        cout << endl << "Variance: " << sampleDistributionProportionVariance(a,b) << endl << endl;
+    }
+    else if(x == 24){
+        double a = readNumber("confidence level (95,90,etc...)");
+        double b = readNumber("proportion of sucesses in the random sample taken");
+        double c = readNumber("Zc");
+        double d = readNumber("number of proporions taken");
+        confidenceIntervalSampleProportion(a,b,c,d);
+    }
+    else if(x == 25){
+        double a = readNumber("confidence level (95,90,etc...)");
+        double b = readNumber("sample mean");
+        double c = readNumber("value of t");
+        double d = readNumber("standard deviation");
+        double e = readNumber("number of means taken");
+        confidenceIntervalMean(a,b,c,d,e);
+    }
+    else if(x == 26){
+        double a = readNumber("P value");
+        double b = readNumber("a");
+        acceptRejectNull(a,b);
+    }
+    else if(x == 27){
+        double a = readNumber("sample proportion");
+        double b = readNumber("p null");
+        double c = readNumber("number of proporions taken");
+        cout << endl << "Z: " << hypothesisTestProportion(a,b,c) << endl << endl;
+    }
+    else if(x == 28){
+        double a = readNumber("sample mean");
+        double b = readNumber("m null");
+        double c = readNumber("number of means taken");
+        double d = readNumber("standard deviation");
+        cout << endl << "T: " << hypothesisTestMean(a,b,c,d) << endl << endl;
+    }
+    else if(x == 29){
+        double a = readNumber("value 1");
+        double b = readNumber("value 2");
+        alternateHypothesisComparingTwoValues(a,b);
+    }
+    else if(x == 30){
+        double a = readNumber("number of proporions taken from sample 1");
+        double b = readNumber("number of proporions taken from sample 2");
+        double c = readNumber("sample proportion for sample 1");
+        double d = readNumber("sample proportion for sample 2");
+        cout << endl << "Sample P Common: " << samplePCommonComparingTwoProportions(a,b,c,d) << endl << endl;
+    }
+    else if(x == 31){
+        double a = readNumber("number of proporions taken from sample 1");
+        double b = readNumber("number of proporions taken from sample 2");
+        double c = readNumber("sample proportion for sample 1");
+        double d = readNumber("sample proportion for sample 2");
+        cout << endl << "Z: " << zComparingTwoProportions(a,b,c,d) << endl << endl;
+    }
+    else if(x == 32){
+        double a = readNumber("number of proporions taken from sample 1");
+        double b = readNumber("number of proporions taken from sample 2");
+        double c = readNumber("sample proportion for sample 1");
+        double d = readNumber("sample proportion for sample 2");
+        double e = readNumber("Zc");
+        double f = readNumber("confidence level (95,90,etc...)");
+        confidenceIntervalComparingTwoProportions(a,b,c,d,e,f);
+    }
+    else if(x == 33){
+        double a = readNumber("number of means taken from sample 1");
+        double b = readNumber("number of means taken from sample 2");
+        double c = readNumber("sample mean for sample 1");
+        double d = readNumber("sample mean for sample 2");
+        double e = readNumber("sample variance for sample 1");
+        double f = readNumber("sample variance for sample 2");
+        cout << endl << "T: " << tComparingTwoIndependentMeans(a,b,c,d,e,f) << endl << endl;
+    }
+    else if(x == 34){
+        double a = readNumber("number of means taken from sample 1");
+        double b = readNumber("number of means taken from sample 2");
+        double c = readNumber("sample mean for sample 1");
+        double d = readNumber("sample mean for sample 2");
+        double e = readNumber("sample variance for sample 1");
+        double f = readNumber("sample variance for sample 2");
+        double g = readNumber("t(df,c)");
+        double h = readNumber("confidence level (95,90,etc...)");
+        confidenceIntervalComparingTwoIndependentMeans(a,b,c,d,e,f,g,h);
+    }
+    else if(x == 35){
+        cout << endl << "Enter the x values." << endl;
+        copy = readArray(&size);
+        cout << endl << "Enter the y values." << endl;
+        copy2 = readArray(&size);
+        cout << endl << "T: " << tComparingTwoRelatedMeans(copy, copy2, size) << endl << endl;
+    }
+    else{
+        cout << endl << "You entered a number out of range." << endl << endl;
+    }
+
+
+    
+
+    
+
+
 
     
 
