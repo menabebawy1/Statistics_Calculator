@@ -1,5 +1,7 @@
 # stat_calc
 
+Summary: A calculator that can solve most problems in a Statistics 101 course. It solves 35 different problems including standard error, box plot, IQR, probability, Z-score, and Confidence Interval.
+
 If you take any Statistics course, you'll realize that that are many arduous calculations that come into play.
 In order to avoid many of these calculations and foucus on the bigger concepts, I decided to create the MINSTAT calculator.
 It has the calculations neccessary for problems in an introductory Statistics class.
